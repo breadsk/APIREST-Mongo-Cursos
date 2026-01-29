@@ -1,15 +1,16 @@
 const express = require('express');
 const ruta = express.Router();
+const validarToken = require('../middleware/validarToken');
 const { 
     listarUsuariosActivos,
     crearUsuario,
     listarUsuarioPorEmail
 } = require('../controller/usuariosController');
 
+              //middleware
+ruta.get('/', validarToken,listarUsuariosActivos);
 
-ruta.get('/', listarUsuariosActivos);
-
-ruta.get('/:email',listarUsuarioPorEmail);
+ruta.get('/:email',validarToken,listarUsuarioPorEmail);
 
 ruta.post('/', crearUsuario);
 

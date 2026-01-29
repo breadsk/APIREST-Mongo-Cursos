@@ -1,5 +1,6 @@
 const express = require('express');
 const usuarios = require('./routes/usuarios');
+const cursos = require('./routes/cursos');
 const auth = require('./routes/auth');
 require('dotenv').config();
 const connectDB = require('./config/database');
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 //Rutas
 app.use('/api/usuarios',usuarios);
+app.use('/api/cursos',cursos);
 app.use('/api/auth',auth);
 
 const port = process.env.PORT || 3000;
